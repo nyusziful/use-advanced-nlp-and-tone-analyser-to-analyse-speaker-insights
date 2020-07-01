@@ -231,7 +231,13 @@ $ python app.py
 
 1. Click on `earnings-call-test-data.txt` as the text file to extract insights.
 
+   > M: Tell how this file is listed here.
+
 2. Select the entities that you want to extract from the text and click on **Analyze** as shown.
+
+   > M: Can mentioned - under step2
+   >
+   > Also tell what the Analyze button does
 
 ![step1](doc/source/images/step1.gif)
 
@@ -249,6 +255,10 @@ $ python app.py
 >   - Watson Tone Analyzer service. [Learn more](https://cloud.ibm.com/docs/tone-analyzer?topic=tone-analyzer-gettingStarted).
 
 - Once the NLU Analysis Report is generated you can review it and print it by clicking on the print button as shown.
+
+  > M: Talk about the contents of the text file. What all NLU analysis report contains. 
+  >
+  > What is the role of Tone analyzer here? 
 
 ![step2](doc/source/images/step2.gif)
 
