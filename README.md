@@ -2,19 +2,30 @@
 
 # Use Advanced NLP and Tone Analyser to extract insights
 
+> M: Can we say "Tone Analysis" instead of tone analyser? Better not to tell service name here.
+
 This Code Pattern is part of the series [Extracting Textual Insights from Videos with IBM Watson]()
 
+> M: Tell user that they have to complete the previous parts to be able to execute this code pattern
 
 In this code pattern, given a text file, we learn how to extract keywords, emotions, sentiments, positive sentences, and much more using Watson Natural Language Understanding and Tone Analyzer.
+
+> M: Make Natural Language Understanding and Tone Analyzer as hyperlinks. Provide IBM Cloud documentation links of these services. Also, tell what advanced NLP capabilities you will be showcasing.
 
 When you have completed this code pattern, you will understand how to:
 
 * Use advanced NLP to analyze text and extract meta-data from content such as concepts, entities, keywords, categories, sentiment and emotion.
+
+  > M: Some places it is American analyse and in some places British analyze. Maintain consistency.
+
 * Leverage Tone Analyzer's cognitive linguistic analysis to identify a variety of tones at both the sentence and document level.
+
 * Connect applications directly to Cloud Object Storage.
 
-
 <!--add an image in this path-->
+
+> M: Delete the comments, if they are no more needed
+
 ![architecture](doc/source/images/architecture.png)
 
 <!--Optionally, add flow steps based on the architecture diagram-->
@@ -24,9 +35,15 @@ When you have completed this code pattern, you will understand how to:
 
 2. Watson Natural Language Understanding and Watson Tone Analyzer is used to extract insights from the text.
 
+   > M: Watson Natural Language Understanding and Watson Tone Analyzer **are** used to extract insights from the text.
+
 3. The response from Natural Language Understanding and Watson Tone Analyzer is analyzed by the application and a Report is generated.
 
+   > M: R in Report - change R case to small case
+
 4. User can download the Report which consists of the textual insights.
+
+   > M: Report case
 
 <!--Optionally, update this section when the video is created-->
 # Watch the Video
@@ -66,11 +83,15 @@ $ git clone https://github.com/IBM/use-advanced-nlp-and-tone-analyser-to-analyse
 
 We will be using the following datasets from the Cloud Object Storage:
 
+> M: Here mention that these files were uploaded to COS in previous code patterns
+
 1. `earnings-call-test-data.txt` - To extract Keywords, sentiments, emotions, positive sentences, and more.
 
 3. `earnings-call-Q-and-A.txt` - To extract Keywords, sentiments, emotions, positive sentences, and more.
 
 ### About the dataset
+
+> M: Are we using this dataset for this code pattern? If not, we don't need "About the dataset" here
 
 For the code pattern demonstration, we have considered `IBM Earnings Call Q1 2019` Webex recording. The data has 40min of IBM Revenue discussion, and 20+ min of Q & A at the end of the recording. We have split the data into 3 parts:
 
@@ -85,15 +106,23 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 
 ### 2. Create Watson Service
 
+> M: Create Watson Service**s**
+
 #### 2.1 Create Natural Language Understanding Service
 
 - On IBM Cloud, create a [Natural Language Understanding](https://cloud.ibm.com/catalog/services/natural-language-understanding) service.
+
+  > M: Provide detailed steps. Right from login. Assume the person has not used IBM Cloud at all. Tell about the plan to select
 
 ![nlu-service](doc/source/images/nlu-service.png)
 
 - In Natural Language Understanding Dashboard, Click on **Services Credentials**
 
+  > M: Click - make C small case
+
 - Click on **New credential** and add a service credential as shown. Once the credential is created, copy and save the credentials in a text file for using it in later steps in this code pattern.
+
+  > M: Mention you can copy using the small two overlapping squares. 
 
 ![](doc/source/images/create-nlu-credentials.gif)
 
@@ -101,9 +130,13 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 
 - On IBM Cloud, create a [Tone Analyzer](https://cloud.ibm.com/catalog/services/tone-analyzer) service.
 
+  > M: Again, tell how to search for this service. Let what plan to select.
+
 ![tone-service](doc/source/images/tone-service.png)
 
 - In Tone Analyzer Dashboard, Click on **Services Credentials**
+
+  > M: Tell how to go to tone analyzer dashboard
 
 - Click on **New credential** and add a service credential as shown. Once the credential is created, copy and save the credentials in a text file for using it in later steps in this code pattern.
 
@@ -113,6 +146,8 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 
 - In the [first code pattern](https://github.com/IBM/convert-video-to-audio) cloned repo, you will have updated **credentials.json** file with cloud object storage credentials. Copy that file and paste it in parent folder of the repo that you cloned in [step 1](#1-clone-the-repo).
 
+  > Say, first code pattern of this series.
+
 - In the repo parent folder, open the **naturallanguageunderstanding.json** file and paste the credentials copied in [step 2.1](#2.1-create-natural-language-understanding-service) and save the file.
 
 - Similarly, in the repo parent folder, open the **toneanalyzer.json** file and paste the credentials copied in [step 2.2](#2.2-create-tone-analyzer-service) and save the file.
@@ -121,6 +156,8 @@ This is a part of Q & A's asked at the end of the meeting. The purpose of this d
 ### 4. Deploy the Application
 
 <details><summary><b>With Docker Installed</b></summary>
+> M: collapse/expand of above section is not working
+
 
 - Build the **Dockerfile** as follows :
 
@@ -139,6 +176,8 @@ $ docker run -p 8080:8080 use-advanced-nlp-to-extract-insights
 </details>
 
 <details><summary><b>Without Docker </b></summary>
+> M: collapse/expand of above section is not working
+
 
 - Install the python libraries as follows:
 
@@ -163,6 +202,24 @@ $ python app.py
 - The Application will be available on <http://localhost:8080>
 
 </details>
+
+> M: Getting below error. I have installed requirements.txt
+>
+> Muralidhars-MacBook-Pro-2:use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights muralidhar$ python3 app.py
+>
+> app.py:5: DeprecationWarning: The import 'werkzeug.secure_filename' is deprecated and will be removed in Werkzeug 1.0. Use 'from werkzeug.utils import secure_filename' instead.
+>
+>  from werkzeug import secure_filename
+>
+> Traceback (most recent call last):
+>
+>  File "app.py", line 16, in <module>
+>
+>   from wordcloud import WordCloud, STOPWORDS
+>
+> ModuleNotFoundError: No module named 'wordcloud'
+>
+> Muralidhars-MacBook-Pro-2:use-advanced-nlp-and-tone-analyser-to-analyse-speaker-insights muralidhar$
 
 ### 5. Run the Application
 
